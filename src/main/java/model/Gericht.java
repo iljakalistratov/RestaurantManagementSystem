@@ -2,12 +2,12 @@ package model;
 
 public class Gericht {
     private String name;
-    private double price;
+    private double preis;
     private int anzahl;
 
     public Gericht(int id, String name, double price, int anzahl) {
         this.name = name;
-        this.price = price;
+        this.preis = price;
         this.anzahl = anzahl;
     }
 
@@ -19,12 +19,12 @@ public class Gericht {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPreis() {
+        return preis;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPreis(double preis) {
+        this.preis = preis;
     }
 
     public int getAnzahl() {
