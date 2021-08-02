@@ -22,9 +22,9 @@ public class Bestellliste {
 
     public double getGesamtPreis() {
         gesamtPreis = 0;
-        bestellGerichte.forEach((bestellGericht -> {
+        bestellGerichte.forEach((bestellGericht) -> {
             gesamtPreis += bestellGericht.getPreis();
-        }));
+        });
         return gesamtPreis;
     }
 
