@@ -5,9 +5,9 @@ public class Gericht {
     private double preis;
     private int anzahl;
 
-    public Gericht(int id, String name, double price, int anzahl) {
+    public Gericht(int id, String name, double preis, int anzahl) {
         this.name = name;
-        this.preis = price;
+        this.preis = preis;
         this.anzahl = anzahl;
     }
 
