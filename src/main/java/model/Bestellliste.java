@@ -1,29 +1,20 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Bestellliste {
+public class Bestellliste extends ArrayList<Gericht> {
 
-    private List<BestellGericht> bestellGerichte;
     private double gesamtPreis;
 
-    public Bestellliste(List<BestellGericht> bestellGerichts, double preis) {
-        this.bestellGerichte = bestellGerichts;
-        this.gesamtPreis = preis;
-    }
-
-    public List<BestellGericht> getBestellGerichte() {
-        return bestellGerichte;
-    }
-
-    public void setBestellGerichte(List<BestellGericht> bestellGerichte) {
-        this.bestellGerichte = bestellGerichte;
+    public void bestellen(Gericht gericht){
+        this.add(gericht);
     }
 
     public double getGesamtPreis() {
         gesamtPreis = 0;
-        bestellGerichte.forEach((bestellGericht) -> {
-            gesamtPreis += bestellGericht.getPreis();
+        this.forEach((gericht) -> {
+            gesamtPreis += gericht.getPreis()*gericht.getAnzahl();
         });
         return gesamtPreis;
     }

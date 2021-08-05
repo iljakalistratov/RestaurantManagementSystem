@@ -1,21 +1,25 @@
 package model;
 
 public class Angestellter {
-    private String id;
+    private int id;
     private String name;
     private int gehalt;
 
-    public Angestellter(String id, String name, int gehalt) {
+    public Angestellter(int id, String name, int gehalt) {
         this.id = id;
         this.name = name;
         this.gehalt = gehalt;
     }
 
-    public String getId() {
+    public void printData(){
+        System.out.println(this.id + "     " + this.name + "     " + this.gehalt);
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
