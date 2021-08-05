@@ -5,10 +5,17 @@ public class Gericht {
     private double preis;
     private int anzahl;
 
-    public Gericht(int id, String name, double preis, int anzahl) {
+    public Gericht(String name, double preis, int anzahl) {
         this.name = name;
         this.preis = preis;
         this.anzahl = anzahl;
+    }
+
+    public void printData(){
+        System.out.println(this.name + ": ");
+        System.out.printf("Preis: " + this.preis + "     Verfügbar: " + this.anzahl);
+        System.out.println();
+        System.out.println();
     }
 
     public String getName() {

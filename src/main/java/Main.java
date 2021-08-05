@@ -1,3 +1,8 @@
+import model.Gericht;
+import model.Speisekarte;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -5,13 +10,19 @@ public class Main {
     final static String username = "admin";
     final static String password = "admin";
 
+
     public static void main(String[] args) {
 
-        login();
+        Menu menu = new Menu();
+
+        if(login()){
+            menu.menuAdmin();
+        }
+
 
     }
 
-    public static void login(){
+    public static boolean login(){
         System.out.println("Wollen Sie sich als Administrator einloggen? (y/n)");
 
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +38,7 @@ public class Main {
             String eingabePassword = scanner.nextLine();
 
             if (eingabeUsername.equals(username) && eingabePassword.equals(password)){
-                System.out.println("Angemeldet");
+                return true;
             }
             else{
                 System.out.println("Falsche Anmeldedaten");
@@ -35,9 +46,14 @@ public class Main {
             }
         }
         else if (eingabe.equals("n")){
-            System.out.println("no");
+            return false;
         }
         else
             login();
+        return false;
     }
+
+
+
+
 }
