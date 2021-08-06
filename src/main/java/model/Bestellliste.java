@@ -11,7 +11,7 @@ public class Bestellliste extends ArrayList<Gericht> {
     private double gesamtPreis;
 
     /**
-     * Methode um alle bestellten Gerichte, mit ihrem EInzelpreis, der bestellten Anzahl & dem Gesamtpreis in der Konsole auszugeben.
+     * Methode um alle bestellten Gerichte, mit ihrem EInzelpreis, der bestellten Anzahl und dem Gesamtpreis in der Konsole auszugeben.
      */
     public void printAll(){
         this.forEach(Gericht::printDataBestellt);
@@ -53,7 +53,7 @@ public class Bestellliste extends ArrayList<Gericht> {
 
     /**
      * Setter für Gesamtpreis
-     * @param gesamtPreis
+     * @param gesamtPreis Gesamtpreis der Rechnung
      */
     public void setGesamtPreis(double gesamtPreis) {
         this.gesamtPreis = gesamtPreis;

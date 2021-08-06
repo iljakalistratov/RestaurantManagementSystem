@@ -200,7 +200,7 @@ public class Menu {
 
     /**
      * Methode, welche es dem Nutzer ermöglicht Gerichte zu bestellen.
-     * Dieses System agiert mit der Speisekarte & mir der Bestellliste.
+     * Dieses System agiert mit der Speisekarte und mit der Bestellliste.
      */
     public void bestellen() {
         System.out.println("Bestellen?()y/n");
@@ -246,7 +246,7 @@ public class Menu {
     }
 
     /**
-     * Methode, welche dafür zuständig ist, dass die Bestellliste angezeigt wird & bestätigt werden kann oder auch nicht.
+     * Methode, welche dafür zuständig ist, dass die Bestellliste angezeigt wird und bestätigt werden kann oder auch nicht.
      */
     public void bestellListe(){
         bestellliste.printAll();

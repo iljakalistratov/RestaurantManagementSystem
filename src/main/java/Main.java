@@ -13,6 +13,7 @@ public class Main {
 
     /**
      * Main Methode
+     * @param args Argumente
      */
     public static void main(String[] args) {
 
