@@ -11,6 +11,11 @@ public class Bestellliste extends ArrayList<Gericht> {
         this.add(gericht);
     }
 
+    public void bestellen(Gericht gericht, int anzahl){
+        gericht.setAnzahl(anzahl);
+        this.add(gericht);
+    }
+
     public double getGesamtPreis() {
         gesamtPreis = 0;
         this.forEach((gericht) -> {

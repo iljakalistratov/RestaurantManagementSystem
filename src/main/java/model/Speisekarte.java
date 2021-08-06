@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Speisekarte extends ArrayList<Gericht> {
@@ -24,6 +23,15 @@ public class Speisekarte extends ArrayList<Gericht> {
                 this.remove(i);
             }
         }
+    }
+
+    public Gericht findByName(String name){
+        for (int i=0; i<this.size(); i++){
+            if (this.get(i).getName().equalsIgnoreCase(name)){
+                return this.get(i);
+            }
+        }
+        return null;
     }
 
     public void edit(String name){

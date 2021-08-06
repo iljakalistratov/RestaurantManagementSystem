@@ -1,7 +1,4 @@
-import model.AngestelltenListe;
-import model.Angestellter;
-import model.Gericht;
-import model.Speisekarte;
+import model.*;
 
 import java.util.Scanner;
 
@@ -11,33 +8,35 @@ public class Menu {
     Gericht pizza = new Gericht("pizza", 7.50, 10);
     Gericht schnitzel = new Gericht("schnitzel", 6, 13);
     Gericht salat = new Gericht("salat", 4.50, 25);
-    Speisekarte gerichteliste = new Speisekarte(){{
+    Speisekarte gerichteliste = new Speisekarte() {{
         add(pizza);
         add(schnitzel);
         add(salat);
     }};
 
-    Angestellter robert = new Angestellter(1,"robert", 1300);
+    Angestellter robert = new Angestellter(1, "robert", 1300);
     Angestellter herbert = new Angestellter(2, "herbert", 1250);
-    Angestellter sabrina = new Angestellter(3,"sabrina", 1000);
-    AngestelltenListe angestelltenListe = new AngestelltenListe(){{
+    Angestellter sabrina = new Angestellter(3, "sabrina", 1000);
+    AngestelltenListe angestelltenListe = new AngestelltenListe() {{
         add(robert);
         add(herbert);
         add(sabrina);
     }};
 
+    Bestellliste bestellliste = new Bestellliste();
 
 
-    public void menuAdmin(){
+    public void menuAdmin() {
         System.out.println("1.Gerichte verwalten");
         System.out.println("2.Mitarbeiter verwalten");
         System.out.println("3.Bestellen");
-        System.out.println("4.Exit");
+        System.out.println("4.Bestellliste");
+        System.out.println("5.Exit");
 
         Scanner scanner = new Scanner(System.in);
         int befehl = scanner.nextInt();
 
-        switch (befehl){
+        switch (befehl) {
             case 1:
                 System.out.println("Gerichte verwalten");
                 gerichteliste.printAll();
@@ -46,7 +45,7 @@ public class Menu {
                 Scanner scanner2 = new Scanner(System.in);
                 String gerichtoperation = scanner2.nextLine();
 
-                switch (gerichtoperation){
+                switch (gerichtoperation) {
                     case "d":
                         System.out.println("Welches Gericht soll von der Speisekarte entfrnt werden? (Name als String)");
                         Scanner scanner1 = new Scanner(System.in);
@@ -84,7 +83,7 @@ public class Menu {
                 Scanner scanner3 = new Scanner(System.in);
                 String mitarbeiteroperation = scanner3.nextLine();
 
-                switch (mitarbeiteroperation){
+                switch (mitarbeiteroperation) {
                     case "d":
                         System.out.println("Welcher Mitarbeiter soll von der Liste entfernt werden? (Id angeben)");
                         Scanner scanner1 = new Scanner(System.in);
@@ -117,13 +116,45 @@ public class Menu {
                 break;
             case 3:
                 System.out.println("Bestellen");
+                gerichteliste.printAll();
+                bestellen();
                 break;
             case 4:
+                System.out.println("Bestellliste anzeigen");
+            case 5:
                 System.out.println("Exit");
                 break;
             default:
                 menuAdmin();
                 break;
+        }
+    }
+
+    public void bestellen() {
+        System.out.println("Bestellen?()y/n");
+        Scanner scanner2 = new Scanner(System.in);
+        String bestellenYN = scanner2.nextLine();
+
+        switch (bestellenYN) {
+            case "y":
+                System.out.println("Welches Gericht soll auf die Bestellliste? (Name als String)");
+                Scanner scanner = new Scanner(System.in);
+                String name = scanner.nextLine();
+                Gericht gericht = gerichteliste.findByName(name);
+                Gericht gerichtBestellt = new Gericht(gericht.getName(), gericht.getPreis(), 0);
+                System.out.println("Wie viel?");
+                Scanner scanner1 = new Scanner(System.in);
+                int anzahl = scanner1.nextInt();
+                if (anzahl < gericht.getAnzahl()) {
+                    bestellliste.bestellen(gerichtBestellt, anzahl);
+                    gericht.setAnzahl(gericht.getAnzahl() - anzahl);
+                }
+                bestellen();
+                break;
+            case "n":
+                menuAdmin();
+
+
         }
     }
 }
