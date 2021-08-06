@@ -10,19 +10,16 @@ public class Main {
     final static String username = "admin";
     final static String password = "admin";
 
+    static Menu menu = new Menu();
 
     public static void main(String[] args) {
 
-        Menu menu = new Menu();
-
-        if(login()){
-            menu.menuAdmin();
-        }
+        login();
 
 
     }
 
-    public static boolean login(){
+    public static void login(){
         System.out.println("Wollen Sie sich als Administrator einloggen? (y/n)");
 
         Scanner scanner = new Scanner(System.in);
@@ -31,14 +28,14 @@ public class Main {
         if (eingabe.equals("y")){
             System.out.println("username:");
             Scanner scanner2 = new Scanner(System.in);
-            String eingabeUsername = scanner.nextLine();
+            String eingabeUsername = scanner2.nextLine();
 
             System.out.println("password:");
             Scanner scanner3 = new Scanner(System.in);
-            String eingabePassword = scanner.nextLine();
+            String eingabePassword = scanner3.nextLine();
 
             if (eingabeUsername.equals(username) && eingabePassword.equals(password)){
-                return true;
+                menu.menuAdmin();
             }
             else{
                 System.out.println("Falsche Anmeldedaten");
@@ -46,11 +43,10 @@ public class Main {
             }
         }
         else if (eingabe.equals("n")){
-            return false;
+            System.exit(0);
         }
         else
             login();
-        return false;
     }
 
 

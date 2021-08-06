@@ -18,6 +18,13 @@ public class Gericht {
         System.out.println();
     }
 
+    public void printDataBestellt(){
+        System.out.println(this.name + ": ");
+        System.out.printf("Preis: " + this.preis + "     Anzahl: " + this.anzahl);
+        System.out.println();
+        System.out.println();
+    }
+
     public String getName() {
         return name;
     }

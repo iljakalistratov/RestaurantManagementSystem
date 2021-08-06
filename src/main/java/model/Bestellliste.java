@@ -5,6 +5,15 @@ import java.util.List;
 
 public class Bestellliste extends ArrayList<Gericht> {
 
+    public void printAll(){
+        this.forEach(Gericht::printDataBestellt);
+    }
+
+    public void printGesamtpreis(){
+        System.out.println();
+        System.out.println("Gesamtpreis: " + this.getGesamtPreis());
+    }
+
     private double gesamtPreis;
 
     public void bestellen(Gericht gericht){

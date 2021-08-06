@@ -33,86 +33,17 @@ public class Menu {
         System.out.println("4.Bestellliste");
         System.out.println("5.Exit");
 
-        Scanner scanner = new Scanner(System.in);
-        int befehl = scanner.nextInt();
+        Scanner scannerAnfang = new Scanner(System.in);
+        int befehl = scannerAnfang.nextInt();
 
         switch (befehl) {
             case 1:
                 System.out.println("Gerichte verwalten");
-                gerichteliste.printAll();
-                System.out.println("Was möchten sie tun? (a(add)/d(delete)/e(edit)");
-
-                Scanner scanner2 = new Scanner(System.in);
-                String gerichtoperation = scanner2.nextLine();
-
-                switch (gerichtoperation) {
-                    case "d":
-                        System.out.println("Welches Gericht soll von der Speisekarte entfrnt werden? (Name als String)");
-                        Scanner scanner1 = new Scanner(System.in);
-                        String name = scanner1.nextLine();
-                        gerichteliste.deleteByName(name);
-                        menuAdmin();
-                        break;
-                    case "a":
-                        System.out.println("Name:");
-                        Scanner scannerName = new Scanner(System.in);
-                        String name2 = scannerName.nextLine();
-                        System.out.println("Preis:");
-                        Scanner scannerPreis = new Scanner(System.in);
-                        double preis = scannerPreis.nextDouble();
-                        System.out.println("Anzahl:");
-                        Scanner scannerAnzahl = new Scanner(System.in);
-                        int anzahl = scannerAnzahl.nextInt();
-                        Gericht gericht = new Gericht(name2, preis, anzahl);
-                        gerichteliste.add(gericht);
-                        menuAdmin();
-                        break;
-                    case "e":
-                        System.out.println("Welches Gericht möchten Sie bearbeiten? (Name als String)");
-                        Scanner scanner3 = new Scanner(System.in);
-                        String name3 = scanner3.nextLine();
-                        gerichteliste.edit(name3);
-                    default:
-                        menuAdmin();
-                }
+                gerichteVerwalten();
                 break;
             case 2:
                 System.out.println("Mitarbeiter verwalten");
-                angestelltenListe.printAll();
-                System.out.println("Was möchten sie tun? (a(add)/d(delete)/e(edit)");
-                Scanner scanner3 = new Scanner(System.in);
-                String mitarbeiteroperation = scanner3.nextLine();
-
-                switch (mitarbeiteroperation) {
-                    case "d":
-                        System.out.println("Welcher Mitarbeiter soll von der Liste entfernt werden? (Id angeben)");
-                        Scanner scanner1 = new Scanner(System.in);
-                        int idDelete = scanner1.nextInt();
-                        angestelltenListe.deleteById(idDelete);
-                        menuAdmin();
-                        break;
-                    case "a":
-                        System.out.println("Name:");
-                        Scanner scannerName = new Scanner(System.in);
-                        String name2 = scannerName.nextLine();
-                        System.out.println("ID:");
-                        Scanner scannerPreis = new Scanner(System.in);
-                        int idAdd = scannerPreis.nextInt();
-                        System.out.println("Gehalt:");
-                        Scanner scannerAnzahl = new Scanner(System.in);
-                        int gehalt = scannerAnzahl.nextInt();
-                        Angestellter angestellter = new Angestellter(idAdd, name2, gehalt);
-                        angestelltenListe.add(angestellter);
-                        menuAdmin();
-                        break;
-                    case "e":
-                        System.out.println("Welchen Mitarbeiter in der Liste wollen Sie bearbeiten (ID angeben)");
-                        Scanner scanner4 = new Scanner(System.in);
-                        int idEdit = scanner4.nextInt();
-                        angestelltenListe.edit(idEdit);
-                    default:
-                        menuAdmin();
-                }
+                mitarbeiterVerwalten();
                 break;
             case 3:
                 System.out.println("Bestellen");
@@ -121,8 +52,9 @@ public class Menu {
                 break;
             case 4:
                 System.out.println("Bestellliste anzeigen");
+                bestellListe();
             case 5:
-                System.out.println("Exit");
+                System.exit(0);
                 break;
             default:
                 menuAdmin();
@@ -130,31 +62,147 @@ public class Menu {
         }
     }
 
+    public void gerichteVerwalten(){
+        gerichteliste.printAll();
+        System.out.println("Was möchten sie tun? a(add)/d(delete)/e(edit)/n(nothing)");
+
+        Scanner scanner2 = new Scanner(System.in);
+        String gerichtoperation = scanner2.nextLine();
+
+        switch (gerichtoperation) {
+            case "d":
+                System.out.println("Welches Gericht soll von der Speisekarte entfrnt werden? (Name als String)");
+                Scanner scannerGerichtD = new Scanner(System.in);
+                String name = scannerGerichtD.nextLine();
+                gerichteliste.deleteByName(name);
+                menuAdmin();
+                break;
+            case "a":
+                System.out.println("Name:");
+                Scanner scannerName = new Scanner(System.in);
+                String name2 = scannerName.nextLine();
+                System.out.println("Preis:");
+                Scanner scannerPreis = new Scanner(System.in);
+                double preis = scannerPreis.nextDouble();
+                System.out.println("Anzahl:");
+                Scanner scannerAnzahl = new Scanner(System.in);
+                int anzahl = scannerAnzahl.nextInt();
+                Gericht gericht = new Gericht(name2, preis, anzahl);
+                gerichteliste.add(gericht);
+                menuAdmin();
+                break;
+            case "e":
+                System.out.println("Welches Gericht möchten Sie bearbeiten? (Name als String)");
+                Scanner scannerGerichtB = new Scanner(System.in);
+                String name3 = scannerGerichtB.nextLine();
+                gerichteliste.edit(name3);
+            case "n":
+                menuAdmin();
+            default:
+                menuAdmin();
+        }
+    }
+
+    public void mitarbeiterVerwalten(){
+        angestelltenListe.printAll();
+        System.out.println("Was möchten sie tun? a(add)/d(delete)/e(edit)/n(nothing)");
+        Scanner scanner3 = new Scanner(System.in);
+        String mitarbeiteroperation = scanner3.nextLine();
+
+        switch (mitarbeiteroperation) {
+            case "d":
+                System.out.println("Welcher Mitarbeiter soll von der Liste entfernt werden? (Id angeben)");
+                Scanner scannerAID = new Scanner(System.in);
+                int idDelete = scannerAID.nextInt();
+                angestelltenListe.deleteById(idDelete);
+                menuAdmin();
+                break;
+            case "a":
+                System.out.println("Name:");
+                Scanner scannerName = new Scanner(System.in);
+                String name2 = scannerName.nextLine();
+                System.out.println("ID:");
+                Scanner scannerPreis = new Scanner(System.in);
+                int idAdd = scannerPreis.nextInt();
+                System.out.println("Gehalt:");
+                Scanner scannerAnzahl = new Scanner(System.in);
+                int gehalt = scannerAnzahl.nextInt();
+                Angestellter angestellter = new Angestellter(idAdd, name2, gehalt);
+                angestelltenListe.add(angestellter);
+                menuAdmin();
+                break;
+            case "e":
+                System.out.println("Welchen Mitarbeiter in der Liste wollen Sie bearbeiten (ID angeben)");
+                Scanner scanner4 = new Scanner(System.in);
+                int idEdit = scanner4.nextInt();
+                angestelltenListe.edit(idEdit);
+            case "n":
+                menuAdmin();
+            default:
+                menuAdmin();
+        }
+    }
+
     public void bestellen() {
         System.out.println("Bestellen?()y/n");
-        Scanner scanner2 = new Scanner(System.in);
-        String bestellenYN = scanner2.nextLine();
+        Scanner scanner5 = new Scanner(System.in);
+        String bestellenYN = scanner5.nextLine();
 
         switch (bestellenYN) {
             case "y":
                 System.out.println("Welches Gericht soll auf die Bestellliste? (Name als String)");
-                Scanner scanner = new Scanner(System.in);
-                String name = scanner.nextLine();
-                Gericht gericht = gerichteliste.findByName(name);
-                Gericht gerichtBestellt = new Gericht(gericht.getName(), gericht.getPreis(), 0);
-                System.out.println("Wie viel?");
-                Scanner scanner1 = new Scanner(System.in);
-                int anzahl = scanner1.nextInt();
-                if (anzahl < gericht.getAnzahl()) {
-                    bestellliste.bestellen(gerichtBestellt, anzahl);
-                    gericht.setAnzahl(gericht.getAnzahl() - anzahl);
+                Scanner scannerBestell = new Scanner(System.in);
+                String name = scannerBestell.nextLine();
+                if (gerichteliste.contains(gerichteliste.findByName(name))){
+                    Gericht gericht = gerichteliste.findByName(name);
+                    Gericht gerichtBestellt = new Gericht(gericht.getName(), gericht.getPreis(), 0);
+                    System.out.println("Wie viel?");
+                    Scanner scannerAB = new Scanner(System.in);
+                    int anzahl = scannerAB.nextInt();
+                    if (anzahl < gericht.getAnzahl()) {
+                        bestellliste.bestellen(gerichtBestellt, anzahl);
+                        gericht.setAnzahl(gericht.getAnzahl() - anzahl);
+                    }
+                    else
+                        System.out.println("Nicht genug " + gericht.getName() + " verfügbar!");
+                        bestellen();
                 }
-                bestellen();
+                else
+                    System.out.println("Dieses Gericht exisitert nicht auf der Speisekarte");
+                    System.out.println();
+                    bestellen();
                 break;
             case "n":
                 menuAdmin();
-
+            default:
+                System.out.println("Nur y oder n erlaubt!");
+                bestellen();
+                break;
 
         }
+    }
+
+    public void bestellListe(){
+        bestellliste.printAll();
+        bestellliste.printGesamtpreis();
+        System.out.println();
+        System.out.println("Soll die Bestellung so ausgeführt werden? (y/n)");
+        Scanner scannerBListe = new Scanner(System.in);
+        String bestellungD = scannerBListe.nextLine();
+        switch (bestellungD){
+            case "y":
+                bestellliste.clear();
+                menuAdmin();
+                break;
+            case "n":
+                menuAdmin();
+                break;
+            default:
+                System.out.println("Nur y oder n erlaubt!");
+                bestellListe();
+                break;
+
+        }
+
     }
 }
