@@ -1,8 +1,3 @@
-import model.Gericht;
-import model.Speisekarte;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,6 +14,10 @@ public class Main {
 
     }
 
+    /**
+     * LoginMethode um Zugriff auf das System zu bekommen.
+     * Anmeldename: admin , Passwort: admin
+     */
     public static void login(){
         System.out.println("Wollen Sie sich als Administrator einloggen? (y/n)");
 

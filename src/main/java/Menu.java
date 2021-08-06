@@ -74,8 +74,13 @@ public class Menu {
                 System.out.println("Welches Gericht soll von der Speisekarte entfrnt werden? (Name als String)");
                 Scanner scannerGerichtD = new Scanner(System.in);
                 String name = scannerGerichtD.nextLine();
-                gerichteliste.deleteByName(name);
-                menuAdmin();
+                if (gerichteliste.contains(gerichteliste.findByName(name))){
+                    gerichteliste.deleteByName(name);
+                }
+                else
+                    System.out.println("Dieses Gericht existiert nicht auf der Speisekarte!");
+                    System.out.println();
+                gerichteVerwalten();
                 break;
             case "a":
                 System.out.println("Name:");
@@ -84,9 +89,15 @@ public class Menu {
                 System.out.println("Preis:");
                 Scanner scannerPreis = new Scanner(System.in);
                 double preis = scannerPreis.nextDouble();
+                if (preis <= 0.0){
+                    throw new IllegalArgumentException("Es sind nur Werte größer als 0 erlaubt!");
+                }
                 System.out.println("Anzahl:");
                 Scanner scannerAnzahl = new Scanner(System.in);
                 int anzahl = scannerAnzahl.nextInt();
+                if (anzahl < 1){
+                    throw new IllegalArgumentException("Es sind nur Werte größer als 0 erlaubt!");
+                }
                 Gericht gericht = new Gericht(name2, preis, anzahl);
                 gerichteliste.add(gericht);
                 menuAdmin();
@@ -95,11 +106,18 @@ public class Menu {
                 System.out.println("Welches Gericht möchten Sie bearbeiten? (Name als String)");
                 Scanner scannerGerichtB = new Scanner(System.in);
                 String name3 = scannerGerichtB.nextLine();
-                gerichteliste.edit(name3);
+                if (gerichteliste.contains(gerichteliste.findByName(name3))){
+                    gerichteliste.edit(name3);
+                }
+                else
+                    System.out.println("Dieses Gericht exisitiert nicht auf der Speisekarte!");
+                    System.out.println();
+                gerichteVerwalten();
+                break;
             case "n":
                 menuAdmin();
             default:
-                menuAdmin();
+                gerichteVerwalten();
         }
     }
 
@@ -114,8 +132,16 @@ public class Menu {
                 System.out.println("Welcher Mitarbeiter soll von der Liste entfernt werden? (Id angeben)");
                 Scanner scannerAID = new Scanner(System.in);
                 int idDelete = scannerAID.nextInt();
-                angestelltenListe.deleteById(idDelete);
-                menuAdmin();
+                if (idDelete < 0){
+                    throw new IllegalArgumentException("Es sind keine negativen Werte als ID erlaubt!");
+                }
+                if (angestelltenListe.contains(angestelltenListe.findById(idDelete))){
+                    angestelltenListe.deleteById(idDelete);
+                }
+                else
+                    System.out.println("Es gibt keinen Mitarbeiter mit dieser ID");
+                    mitarbeiterVerwalten();
+                mitarbeiterVerwalten();
                 break;
             case "a":
                 System.out.println("Name:");
@@ -124,9 +150,15 @@ public class Menu {
                 System.out.println("ID:");
                 Scanner scannerPreis = new Scanner(System.in);
                 int idAdd = scannerPreis.nextInt();
+                if (idAdd < 0){
+                    throw new IllegalArgumentException("Es sind keine negativen Werte als ID erlaubt!");
+                }
                 System.out.println("Gehalt:");
                 Scanner scannerAnzahl = new Scanner(System.in);
                 int gehalt = scannerAnzahl.nextInt();
+                if (gehalt <= 0){
+                    throw new IllegalArgumentException("Es sind keine negativen Werte oder 0 als Gehalt erlaubt!");
+                }
                 Angestellter angestellter = new Angestellter(idAdd, name2, gehalt);
                 angestelltenListe.add(angestellter);
                 menuAdmin();
@@ -135,11 +167,22 @@ public class Menu {
                 System.out.println("Welchen Mitarbeiter in der Liste wollen Sie bearbeiten (ID angeben)");
                 Scanner scanner4 = new Scanner(System.in);
                 int idEdit = scanner4.nextInt();
-                angestelltenListe.edit(idEdit);
+                if (idEdit < 0){
+                    throw new IllegalArgumentException("Es sind keine negativen Werte als ID erlaubt!");
+                }
+                if (angestelltenListe.contains(angestelltenListe.findById(idEdit))){
+                    angestelltenListe.edit(idEdit);
+                }
+                else
+                    System.out.println("Es gibt keinen Mitarbeiter mit dieser ID");
+                    mitarbeiterVerwalten();
+                mitarbeiterVerwalten();
+                break;
             case "n":
                 menuAdmin();
+                break;
             default:
-                menuAdmin();
+                mitarbeiterVerwalten();
         }
     }
 
@@ -159,7 +202,10 @@ public class Menu {
                     System.out.println("Wie viel?");
                     Scanner scannerAB = new Scanner(System.in);
                     int anzahl = scannerAB.nextInt();
-                    if (anzahl < gericht.getAnzahl()) {
+                    if (anzahl < 1){
+                        throw new IllegalArgumentException("Es sind nur Werte größer als 0 erlaubt!");
+                    }
+                    else if (anzahl < gericht.getAnzahl()) {
                         bestellliste.bestellen(gerichtBestellt, anzahl);
                         gericht.setAnzahl(gericht.getAnzahl() - anzahl);
                     }
@@ -174,6 +220,7 @@ public class Menu {
                 break;
             case "n":
                 menuAdmin();
+                break;
             default:
                 System.out.println("Nur y oder n erlaubt!");
                 bestellen();
@@ -184,7 +231,6 @@ public class Menu {
 
     public void bestellListe(){
         bestellliste.printAll();
-        bestellliste.printGesamtpreis();
         System.out.println();
         System.out.println("Soll die Bestellung so ausgeführt werden? (y/n)");
         Scanner scannerBListe = new Scanner(System.in);
