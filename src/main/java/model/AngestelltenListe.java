@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Listenklasse zur VErwaltung der Angestellten
+ * Listenklasse zur Verwaltung der Angestellten
  * @author Ilja Kalistratov
  */
 public class AngestelltenListe extends ArrayList<Angestellter> {

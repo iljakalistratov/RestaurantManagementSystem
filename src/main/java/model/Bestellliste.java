@@ -27,15 +27,6 @@ public class Bestellliste extends ArrayList<Gericht> {
     }
 
     /**
-     * Methode um ein Gericht einmal zur Bestellung hinzuzufügen.
-     * @param gericht Bestelltes Gericht
-     */
-    public void bestellen(Gericht gericht){
-        this.add(gericht);
-        gericht.setAnzahl(1);
-    }
-
-    /**
      * Methode um ein Gericht, gemäß einer bestimmten Anzahl zur Liste hinzuzufügen.
      * @param gericht Bestelltes Gericht
      * @param anzahl Anzahl des Gerichts
