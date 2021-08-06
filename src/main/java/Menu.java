@@ -2,6 +2,10 @@ import model.*;
 
 import java.util.Scanner;
 
+/**
+ * Menü-Klasse
+ * @author Ilja Kalistratov
+ */
 public class Menu {
 
     //Beispiellisten
@@ -25,7 +29,9 @@ public class Menu {
 
     Bestellliste bestellliste = new Bestellliste();
 
-
+    /**
+     * Menü-Methode für das Hauptmenü
+     */
     public void menuAdmin() {
         System.out.println("1.Gerichte verwalten");
         System.out.println("2.Mitarbeiter verwalten");
@@ -62,6 +68,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Methode, welche es ermöglicht dem Nutzer per Konsole Gerichte zu verwalten
+     */
     public void gerichteVerwalten(){
         gerichteliste.printAll();
         System.out.println("Was möchten sie tun? a(add)/d(delete)/e(edit)/n(nothing)");
@@ -121,6 +130,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Methode, welche es ermöglicht dem Nutzer per Konsole Mitarbeiter/Angestellte zu verwalten
+     */
     public void mitarbeiterVerwalten(){
         angestelltenListe.printAll();
         System.out.println("Was möchten sie tun? a(add)/d(delete)/e(edit)/n(nothing)");
@@ -186,6 +198,10 @@ public class Menu {
         }
     }
 
+    /**
+     * Methode, welche es dem Nutzer ermöglicht Gerichte zu bestellen.
+     * Dieses System agiert mit der Speisekarte & mir der Bestellliste.
+     */
     public void bestellen() {
         System.out.println("Bestellen?()y/n");
         Scanner scanner5 = new Scanner(System.in);
@@ -229,6 +245,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Methode, welche dafür zuständig ist, dass die Bestellliste angezeigt wird & bestätigt werden kann oder auch nicht.
+     */
     public void bestellListe(){
         bestellliste.printAll();
         System.out.println();

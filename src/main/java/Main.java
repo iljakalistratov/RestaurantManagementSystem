@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Main Klasse
+ * @author Ilja Kalistratov
+ */
 public class Main {
 
     final static String username = "admin";
@@ -7,6 +11,9 @@ public class Main {
 
     static Menu menu = new Menu();
 
+    /**
+     * Main Methode
+     */
     public static void main(String[] args) {
 
         login();
